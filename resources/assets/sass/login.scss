@@ -1,0 +1,16 @@
+body{
+	background: {
+		color: white;
+	}
+}
+
+#main{
+	display: block;
+	position: absolute;
+	border: 1px solid black;
+	width: 700px;
+	height: 500px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}

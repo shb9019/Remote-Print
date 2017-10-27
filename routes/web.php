@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','LoginController@redirect');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('login', 'LoginController@redirect');
+
+Route::post('login', array('as' => 'login', 'uses' => 'LoginController@loginValidate' ));
