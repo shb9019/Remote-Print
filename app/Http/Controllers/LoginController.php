@@ -18,15 +18,13 @@ class LoginController extends Controller
 		if($request->session()->has('users'))
 		{
 			$username = $request->session()->get('username');
-			return view('dashboard',$data);
+			return view('dashboard');
 		}
 
 		else
 		{
-			return view('auth/login');
+			return view('auth/login',['data' => 'First Redirection']);
 		}
-
-		//return view('welcome');
 	}
 
 	public function loginValidate(Request $request)
@@ -52,8 +50,17 @@ class LoginController extends Controller
 		}
 		else
 		{
-			return $this->ldapAuth($data);
-			//return view('dashboard',['username' => $data['username'], 'password' => $data['password']]); 
+			$ldap = $this->ldapAuth($data);
+			
+			if($ldap)
+			{
+				$request->session()->put('key','one');
+				return view('home');
+			}
+			else
+			{
+				return view('auth/login',['data' => 'Invalid Credentials']);
+			}	
 		}
 	}
 
@@ -75,8 +82,8 @@ class LoginController extends Controller
 			}	 
 			return false;
 		
-		} catch (Exception $e){
-			return view('welcome');
+		} catch (\Exception $e){
+			abort(500);
 		}
 	}
 }

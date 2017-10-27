@@ -75,7 +75,7 @@
     </p>
     <p>
         {{ Form::label('password','Password') }}<br/>
-        {{ $errors->first('password') }}<br/>
+        {{ $errors->first('password') }}{{ $data }}<br/>
         {{ Form::password('password') }}
     </p>
     <p>
