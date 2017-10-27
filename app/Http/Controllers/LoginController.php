@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Adldap\Laravel\Facades\Adldap;
 use Carbon\Carbon;
 
 class LoginController extends Controller
@@ -47,11 +48,12 @@ class LoginController extends Controller
 
 		if($validator->fails())
 		{			
-			return Redirect::back()->withErrors($validator)->withInput(Input::except(array('_token')));
+			return redirect('login')->withErrors($validator)->withInput();
 		}
 		else
 		{
-			return view('dashboard',['username' => $data['username'], 'password' => $data['password']]); 
+			return $this->ldapAuth($data);
+			//return view('dashboard',['username' => $data['username'], 'password' => $data['password']]); 
 		}
 	}
 
@@ -61,5 +63,20 @@ class LoginController extends Controller
 		$data['username'] = filter_var($data['username'],FILTER_SANITIZE_STRING);
 
 		return $data;
+	}
+
+	public function ldapAuth($data)
+	{
+		try{
+			Adldap::connect();
+			
+			if(Adldap::auth()->attempt($data['username'],$data['password'],$bindAsUser=true)) {
+				return true;
+			}	 
+			return false;
+		
+		} catch (Exception $e){
+			return view('welcome');
+		}
 	}
 }

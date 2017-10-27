@@ -2,8 +2,9 @@
 
 @section('content')
 	<div>
-		Hello World.
-		{{ $username }}
-		{{ $password }}
+		{{ $data }}
 	</div>
+	<script>
+		console.log();
+	</script>
 @endsection

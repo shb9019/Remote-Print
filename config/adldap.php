@@ -34,7 +34,7 @@ return [
             |
             */
 
-            'auto_connect' => true,
+            'auto_connect' => false,
 
             /*
             |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
                 |
                 */
 
-                'account_suffix' => env('ADLDAP_ACCOUNT_SUFFIX', ''),
+                'account_suffix' => env('ADLDAP_ACCOUNT_SUFFIX', '@octa.edu'),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -118,7 +118,7 @@ return [
                 |
                 */
 
-                'domain_controllers' => explode(' ', env('ADLDAP_CONTROLLERS', 'corp-dc1.corp.acme.org corp-dc2.corp.acme.org')),
+                'domain_controllers' => explode(' ', env('ADLDAP_CONTROLLERS', '10.0.0.39')),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -158,7 +158,7 @@ return [
                 |
                 */
 
-                'base_dn' => env('ADLDAP_BASEDN', 'dc=corp,dc=acme,dc=org'),
+                'base_dn' => env('ADLDAP_BASEDN', 'DC=10.0.0.39'),
 
                 /*
                 |--------------------------------------------------------------------------
@@ -187,8 +187,8 @@ return [
                 |
                 */
 
-                'admin_username' => env('ADLDAP_ADMIN_USERNAME', 'username'),
-                'admin_password' => env('ADLDAP_ADMIN_PASSWORD', 'password'),
+                'admin_username' => env('ADLDAP_ADMIN_USERNAME', '106116069'),
+                'admin_password' => env('ADLDAP_ADMIN_PASSWORD', 'Nitt609'),
 
                 /*
                 |--------------------------------------------------------------------------
