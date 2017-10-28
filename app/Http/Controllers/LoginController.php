@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Adldap\Laravel\Facades\Adldap;
+use Session;
 use Carbon\Carbon;
 
 class LoginController extends Controller
@@ -15,10 +16,10 @@ class LoginController extends Controller
 	{
 		$current_time = Carbon::now();
 
-		if($request->session()->has('users'))
+		if(Session::has('users'))
 		{
-			$username = $request->session()->get('username');
-			return view('dashboard');
+			$username = Session::get('key');
+			return redirect('dashboard');
 		}
 
 		else
@@ -54,8 +55,8 @@ class LoginController extends Controller
 			
 			if($ldap)
 			{
-				$request->session()->put('key','one');
-				return view('home');
+				Session::put('key',$data['username']);
+				return redirect('dashboard');
 			}
 			else
 			{

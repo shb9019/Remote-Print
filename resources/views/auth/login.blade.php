@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <!--<div class="row">
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
@@ -64,23 +64,6 @@
                 </div>
             </div>
         </div>
-    </div>-->
-    {{ Form::open(array('action' => 'LoginController@loginValidate', 'method' => 'POST')) }}
-    {{ csrf_field() }}
-    <h1>Login</h1>  
-    <p>
-        {{ Form::label('username', 'Username') }}<br/>
-        {{ $errors->first('username') }}<br/>
-        {{ Form::text('username', Input::old('username'),array('placeholder' => 'Your Roll Number')) }}
-    </p>
-    <p>
-        {{ Form::label('password','Password') }}<br/>
-        {{ $errors->first('password') }}{{ $data }}<br/>
-        {{ Form::password('password') }}
-    </p>
-    <p>
-        {{ Form::submit('Submit') }}
-    </p>
-    {{ Form::close() }}
+    </div>
 </div>
 @endsection

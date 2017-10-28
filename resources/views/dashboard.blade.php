@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-	<div>
-		{{ $data }}
-	</div>
-	<script>
-		console.log();
-	</script>
+	<div id="drop"></div>
+	<div id="printForm"></div>
+	<div id="verdict"></div>
+	<div id="app"></div>
 @endsection

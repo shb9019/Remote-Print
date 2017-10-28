@@ -11,5 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/assets/js/login.jsx', 'public/js')
+mix.react('resources/assets/js/login.jsx', 'public/js/')
    .sass('resources/assets/sass/login.scss', 'public/css');

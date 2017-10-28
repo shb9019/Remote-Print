@@ -19,4 +19,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('login', 'LoginController@redirect');
 
+Route::get('/dashboard',function() {
+	return view('dashboard');
+});
+
 Route::post('login', array('as' => 'login', 'uses' => 'LoginController@loginValidate' ));
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7cf7a553fa54caa6053b9eed10b6806",
-    "content-hash": "fc834db1c3d3b0bd4b532cd5ccebba9c",
+    "hash": "7a85b34c45bf9145f7bccdd014e38f6e",
+    "content-hash": "0aa441db582d9f2bd0e15021c1b7d23a",
     "packages": [
         {
             "name": "adldap2/adldap2",
@@ -2480,6 +2480,46 @@
             "time": "2017-08-15 16:48:10"
         },
         {
+            "name": "gokulsrinivas/sangria",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GokulSrinivas/Sangria.git",
+                "reference": "e69076655da30ef74b9b6f4a7b7317b3d37d5710"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GokulSrinivas/Sangria/zipball/e69076655da30ef74b9b6f4a7b7317b3d37d5710",
+                "reference": "e69076655da30ef74b9b6f4a7b7317b3d37d5710",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Sangria": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gokul Srinivas",
+                    "email": "gokusrinivas@gmail.com"
+                }
+            ],
+            "description": "A collection of useful libraries to make life easier.",
+            "keywords": [
+                "api",
+                "email",
+                "helpers",
+                "imap",
+                "json"
+            ],
+            "time": "2016-08-08 12:28:19"
+        },
+        {
             "name": "hamcrest/hamcrest-php",
             "version": "v1.2.2",
             "source": {
@@ -3990,7 +4030,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "gokulsrinivas/sangria": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

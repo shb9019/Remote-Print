@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -43,25 +43,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirect(Request $request)
+    /*public function redirect(Request $request)
     {
         $current_time = Carbon::now();
 
         if($request->session()->has('users'))
         {
             $username = $request->session()->get('username');
-            return view('dashboard',$data);
+            return redirect('dashboard');
         }
 
         else
         {
-            return view('auth/login');
+            return view('auth/login',['data' => 'First Redirection']);
         }
+    }*/
 
-        //return view('welcome');
-    }
-
-    public function loginValidate(Request $request)
+    /*public function loginValidate(Request $request)
     {
         $data = Input::except(array('_token')) ;
 
@@ -80,15 +78,25 @@ class LoginController extends Controller
 
         if($validator->fails())
         {           
-            return $this->ldapAuth($data);
+            return redirect('login')->withErrors($validator)->withInput();
         }
         else
         {
-            return view('dashboard',['username' => $data['username'], 'password' => $data['password']]); 
+            $ldap = $this->ldapAuth($data);
+            
+            if($ldap)
+            {
+                $request->session()->put('key','one');
+                return view('home');
+            }
+            else
+            {
+                return view('auth/login',['data' => 'Invalid Credentials']);
+            }   
         }
-    }
+    }*/
 
-    public function sanitize($data)
+    /*public function sanitize($data)
     {
         $data['password'] = filter_var($data['password'],FILTER_SANITIZE_STRING);
         $data['username'] = filter_var($data['username'],FILTER_SANITIZE_STRING);
@@ -98,6 +106,24 @@ class LoginController extends Controller
 
     public function ldapAuth($data)
     {
+        try{
+            Adldap::connect();
+            
+            if(Adldap::auth()->attempt($data['username'],$data['password'],$bindAsUser=true)) {
+                return true;
+            }    
+            return false;
         
-    }
+        } catch (\Exception $e){
+            abort(500);
+        }
+    }*/
+
+    /*protected function validateLogin(Request $request)
+    {
+        $this->validate($request,[
+            $this->username() => 'required',
+
+        ]);
+    }*/
 }
